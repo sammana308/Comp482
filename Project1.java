@@ -59,9 +59,10 @@ public class Project1 {
 	     System.out.println();
 	     System.out.println("After int array, the Sorted array using built in sort");
 	     Arrays.sort(IntArray);
-	     for (int i = 0; i < IntArray.length; i++)
-	         System.out.print(IntArray[ i ] + " ");
+	    //	     for (int i = 0; i < IntArray.length; i++) {
+//	         System.out.print(IntArray[ i ] + " ");
+//			}
+	     System.out.println();
+	     Array(IntArray) ;
 	  	}
 	}
- 
-	
