@@ -16,6 +16,24 @@ public class Project1 {
         }
         System.out.println();
     }
+    public static void splitArray(int arr[], int ZeroIndex) {
+	int[] inputValues = new int[ZeroIndex];
+	int[] targetValues = new int[(arr.length) - (inputValues.length)];
+	for(int i = 0; i < arr.length; i++) {
+		if(i < inputValues.length)
+			inputValues[i] = arr[i];
+		else
+			targetValues[i - inputValues.length] = arr[i];
+		}
+		System.out.println("Input Values:");
+		printArray(inputValues);
+		Arrays.sort(inputValues);
+		System.out.println("The sorted array of the input values:");
+		printArray(inputValues);
+		
+		System.out.println("Target Values:");
+		printArray(targetValues);
+	}
 	public static void main(String args[])throws IOException {
 	//Read file with fileReader using BufferedReader
 	//Providing the file path of the file input1.txt to read texts from
@@ -38,15 +56,21 @@ public class Project1 {
 	     System.out.println("The converted Int Array is below:");
 	     for(int i = 0; i < ArrayStr.length; i++) {
 	      (IntArray[i]) = Integer.parseInt(ArrayStr[i]);
-	        System.out.print(IntArray[i] + " ");
+	       // System.out.print(IntArray[i] + " ");
 	        }
+	     printArray(IntArray);
 	     System.out.println();
-	     System.out.println("After int array, the Sorted array using built in sort");
-	     Arrays.sort(IntArray);
-	    //	     for (int i = 0; i < IntArray.length; i++) {
-//	         System.out.print(IntArray[ i ] + " ");
-//			}
-	     System.out.println();
-	     Array(IntArray) ;
+ //finding the ZeroIndex of the Integer array
+	     int ZeroIndex = 0;
+	     for(int i = 0; i < IntArray.length; i++) {
+				if(IntArray[i] == 0) {
+					ZeroIndex = i;	
+				}
+			}
+	     System.out.println("ZeroIndex: " + ZeroIndex);
+	     
+	     splitArray(IntArray, ZeroIndex);
+	        }
+	 	  
+	     
 	  	}
-	}
