@@ -1,13 +1,12 @@
 
-import java.io.BufferedReader;      //reads text from the input stream
-import java.io.IOException;			//to throw a failure in Input & Output operations
-import java.util.Arrays;
-import java.io.File;
-import java.io.FileReader;         
+import java.io.BufferedReader;          //reads text from the input stream
+import java.io.IOException;		     	//to throw a failure in Input & Output operations
+import java.util.Arrays;				//provides static methods to dynamically create and access Java arrays
+import java.io.File;					
+import java.io.FileReader;      		  
 
-//Main method 
 public class Project1 {
-	//Method for accessing Integer Arrays outside of their for loop
+    //Method for accessing Integer Arrays outside of their for loop
 	//and for printing
 	public static void printArray(int arr[]){
         int n = arr.length;
@@ -16,14 +15,16 @@ public class Project1 {
         }
         System.out.println();
     }
-    public static void splitArray(int arr[], int ZeroIndex) {
-	int[] inputValues = new int[ZeroIndex];
-	int[] targetValues = new int[(arr.length) - (inputValues.length)];
-	for(int i = 0; i < arr.length; i++) {
-		if(i < inputValues.length)
-			inputValues[i] = arr[i];
-		else
-			targetValues[i - inputValues.length] = arr[i];
+    //Method for splittng the Integer array into two arrays:
+    //inputValues[] and targetValues[]
+	public static void splitArray(int arr[], int ZeroIndex) {
+		int[] inputValues = new int[ZeroIndex];
+		int[] targetValues = new int[(arr.length) - (inputValues.length)];
+		for(int i = 0; i < arr.length; i++) {
+			if(i < inputValues.length)
+				inputValues[i] = arr[i];
+			else
+				targetValues[i - inputValues.length] = arr[i];
 		}
 		System.out.println("Input Values:");
 		printArray(inputValues);
@@ -34,43 +35,50 @@ public class Project1 {
 		System.out.println("Target Values:");
 		printArray(targetValues);
 	}
+	//main method	
 	public static void main(String args[])throws IOException {
-	//Read file with fileReader using BufferedReader
-	//Providing the file path of the file input1.txt to read texts from
+	    //Read file with fileReader using BufferedReader
+	    //Providing the file path of the file input1.txt to read texts from
 		File file = new File("/Users/sammanakabir/Desktop/comp482/Project1/src/input1.txt");
 		BufferedReader reader = new BufferedReader(new FileReader(file));
-		String input;	
+		String input;
+		
+		//building a string for storing the input from the file
 		StringBuilder holder = new StringBuilder();
+		
 		while((input = reader.readLine())!= null) {
-		//input = reader.readLine() ;
-		 holder.append(input);   //placing the input from the file to the String holder
-		 System.out.println(input);
-		 holder.append(" ");     //placing space between string 
+		holder.append(input);   						//placing the input from the file to the String holder
+		System.out.println("Reading: " + input);
+		holder.append(" ");   						  	//placing space between string 
 		}
-		 System.out.println(holder);
-	     String string = holder.toString();
+		System.out.println("Holder: " + holder);  
+	    String string = holder.toString();  
 	
+	    String[] ArrayStr = string.split(" "); 		//Using space to split
+	    int[] IntArray = new int[ArrayStr.length];		//Initialization of IntArray[]
 	     
-	     String[] ArrayStr = string.split(" "); 
-	     int[] IntArray = new int[ArrayStr.length];
-	     System.out.println("The converted Int Array is below:");
-	     for(int i = 0; i < ArrayStr.length; i++) {
-	      (IntArray[i]) = Integer.parseInt(ArrayStr[i]);
-	       // System.out.print(IntArray[i] + " ");
-	        }
-	     printArray(IntArray);
-	     System.out.println();
- //finding the ZeroIndex of the Integer array
-	     int ZeroIndex = 0;
-	     for(int i = 0; i < IntArray.length; i++) {
-				if(IntArray[i] == 0) {
-					ZeroIndex = i;	
-				}
+	    System.out.println("The converted Int Array is below:");
+	    for(int i = 0; i < ArrayStr.length; i++) {
+	    	(IntArray[i]) = Integer.parseInt(ArrayStr[i]);
+	        // System.out.print(IntArray[i] + " ");
+	    }
+	    printArray(IntArray);
+	    System.out.println();
+	     
+	    //finding the ZeroIndex of the Integer array
+	    int ZeroIndex = 0;
+	    for(int i = 0; i < IntArray.length; i++) {
+			if(IntArray[i] == 0) {
+				ZeroIndex = i;	
 			}
-	     System.out.println("ZeroIndex: " + ZeroIndex);
+		}
+	    System.out.println("ZeroIndex: " + ZeroIndex);
 	     
-	     splitArray(IntArray, ZeroIndex);
-	        }
+	    splitArray(IntArray, ZeroIndex);
+	}
 	 	  
-	     
-	  	}
+}
+
+	
+ 
+	
