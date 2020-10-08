@@ -15,8 +15,7 @@ public class Project1 {
         }
         System.out.println();
     }
-    //Method for splittng the Integer array into two arrays:
-    //inputValues[] and targetValues[]
+	//Method for splitting the integer array
 	public static void splitArray(int arr[], int ZeroIndex) {
 		int[] inputValues = new int[ZeroIndex];
 		int[] targetValues = new int[(arr.length) - (inputValues.length)];
@@ -34,6 +33,33 @@ public class Project1 {
 		
 		System.out.println("Target Values:");
 		printArray(targetValues);
+		
+		findElements(inputValues, targetValues);
+	}
+	//Method for finding the three elements
+	public static void findElements(int[] inputValues, int[] targetValues) {
+		int a, sum, start, end, tempSum;
+	for(int i = 1; i < targetValues.length; i++) {
+	     a = targetValues[i];     //reduced to two elements
+	  for(int j = 0; j < inputValues.length; j++) {
+		  sum = a - inputValues[j];
+		   start = j + 1;
+		   end = inputValues.length - 1;
+		   tempSum = inputValues[start] + inputValues[end];
+		   while(start < end) {
+			 if(tempSum == sum) {
+				 System.out.print("Found 3 elements: " + inputValues[start] + " " + inputValues[end] + " " + inputValues[j] + " ");
+				 System.out.print("Of sum, " + targetValues[i]);
+				 System.out.println();
+				 return;
+			 }
+			 else if(tempSum < sum)
+				 start++;
+			 else
+				 end--;
+		   }
+	    }
+	  }
 	}
 	//main method	
 	public static void main(String args[])throws IOException {
